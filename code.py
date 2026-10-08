@@ -33,15 +33,19 @@ The worst (Study - Games) day : Day{int(diff.argmin())+1} with {int(diff.min())}
 
 #D1. Which app won each day?
 app_won = []
+names = ["Chat", "Video", "Study", "Video"]
 for i in range(len(chat)):
-    if (chat[i] > games[i] and chat[i] > study[i] and chat[i] > video[i]):
-        app_won.append("Chat")
-    elif(chat[i] < games[i] and games[i] > study[i] and games[i] > video[i]):
-        app_won.append("Games")
-    elif(chat[i] <study[i] and games[i] < study[i] and study[i] > video[i]):
-        app_won.append("Study")
-    else :
-        app_won.append("Video")
+    list = np.array([chat[i], video[i], study[i], games[i]])
+    idx = int(list.argmax())
+    app_won.append(names[idx])
+    '''
+    or
+    best = 0
+    for j in range(1,4):
+        if list[j]>list[best]:
+            best = j
+    app.won.append(names[best])
+    '''
 print("App that won day wise : ",app_won)
 
 #D2. What share of each day did each app take?
@@ -51,3 +55,12 @@ print("Chat Share : ",(chat/total)*100)
 print("\nVideo Share : ",(video/total)*100)
 print("\nStudy Share : ",(study/total)*100)
 print("\nGames Share : ",(games/total)*100)
+
+
+# the git repo is on /main, not origin main 
+"""
+used these commands
+ git branch -M main
+ git remote add origin https://github.com/Shashi0910/002_Dataset_Transformation_Lab.git
+git push -u origin main
+"""
